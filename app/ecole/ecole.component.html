@@ -1,0 +1,28 @@
+<h3>ecole:{{name}}</h3> 
+<div class="container">
+
+        <div class="alert alert-success" *ngIf="etudiants.length==0" >
+            La liste des etudiant est vide , <a (click)="vue=true" href="#">ajouter un etudiant</a> 
+        </div>
+        <button class="btn btn-success" (click)="etat=!etat" >{{etat? "Masquer Etudiants": "Afficher Etudiants"}}</button>
+        <div *ngIf="etat">
+            <app-etudiant *ngFor="let e of etudiants" [etudiant]="e"></app-etudiant>
+        </div>
+        <hr>
+        <div *ngIf="vue">
+            <h3>ajouter etudiant</h3>
+            <form class="form-group" (ngSubmit)="addEtudiant()">
+               
+                <label for="email"> nom : </label>
+                <input class="form-control" type="text" name="nom" [(ngModel)]="etudiantCurrant.nom" required> <br>
+                
+                <label for="email"> prenom :  </label>
+                <input class="form-control" type="text" name="prenom" [(ngModel)]="etudiantCurrant.prenom" required><br>
+                <label for="email"> num inscription :   </label>
+                <input class="form-control" type="number" name="numInscri" [(ngModel)]="etudiantCurrant.numInscri" required><br>
+                <button class="btn btn-default" type="submit">ajouter</button>
+            </form>
+        </div>
+        
+        
+</div>
